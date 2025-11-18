@@ -26,8 +26,13 @@ function Hero() {
           </div>
         </div>
         <div className="relative">
-          <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-cyan-100 to-teal-50 p-2 shadow-xl">
-            <div className="w-full h-full rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 p-6 flex flex-col justify-between">
+          <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-100 to-teal-50 p-2 shadow-xl">
+            <img
+              src="https://images.unsplash.com/photo-1511044568932-e4b3b3e6fc0f?q=80&w=1600&auto=format&fit=crop"
+              alt="Spa-like bathroom with soft, balanced water"
+              className="absolute inset-0 h-full w-full object-cover rounded-2xl opacity-70"
+            />
+            <div className="relative w-full h-full rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 p-6 flex flex-col justify-between">
               <div>
                 <h3 className="text-slate-800 text-xl font-medium">Your Daily Ritual, Elevated</h3>
                 <p className="text-slate-600 mt-2">Silky showers, brighter laundry, and drinking water that tastes as clean as it feels.</p>

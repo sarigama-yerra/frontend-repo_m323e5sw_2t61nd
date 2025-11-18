@@ -9,7 +9,9 @@ const initial = {
   occupants: '',
   concerns: [],
   budget_range: 'unsure',
-  message: ''
+  message: '',
+  preferred_date: '',
+  preferred_time: '',
 }
 
 const intentOptions = [
@@ -53,9 +55,22 @@ function Contact() {
     setStatus({ state: 'submitting' })
     try {
       const base = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
+      let preferred_datetime
+      if (form.preferred_date) {
+        const time = form.preferred_time || '09:00'
+        preferred_datetime = new Date(`${form.preferred_date}T${time}:00`)
+      }
       const payload = {
-        ...form,
+        full_name: form.full_name,
+        email: form.email,
+        phone: form.phone || undefined,
+        user_intent: form.user_intent,
+        property_type: form.property_type,
         occupants: form.occupants ? Number(form.occupants) : undefined,
+        concerns: form.concerns.length ? form.concerns : undefined,
+        budget_range: form.budget_range,
+        message: form.message || undefined,
+        preferred_datetime: preferred_datetime ? preferred_datetime.toISOString() : undefined,
       }
       const res = await fetch(`${base}/api/leads`, {
         method: 'POST',
@@ -146,6 +161,17 @@ function Contact() {
             <div>
               <label className="block text-sm text-slate-600">Anything else?</label>
               <input name="message" value={form.message} onChange={onChange} placeholder="Tell us about your home, water goals, timeline…" className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm text-slate-600">Preferred date</label>
+              <input type="date" name="preferred_date" value={form.preferred_date} onChange={onChange} className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+            </div>
+            <div>
+              <label className="block text-sm text-slate-600">Preferred time</label>
+              <input type="time" name="preferred_time" value={form.preferred_time} onChange={onChange} className="mt-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
             </div>
           </div>
 

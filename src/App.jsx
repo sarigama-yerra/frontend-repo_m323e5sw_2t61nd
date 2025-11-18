@@ -2,6 +2,9 @@ import React from 'react'
 import Hero from './components/Hero'
 import Benefits from './components/Benefits'
 import Authority from './components/Authority'
+import Gallery from './components/Gallery'
+import ServiceArea from './components/ServiceArea'
+import Scheduler from './components/Scheduler'
 import Contact from './components/Contact'
 
 function App() {
@@ -12,6 +15,7 @@ function App() {
           <div className="font-semibold tracking-tight">AquaWell</div>
           <nav className="hidden md:flex gap-6 text-sm text-slate-600">
             <a href="#benefits" className="hover:text-slate-900">Benefits</a>
+            <a href="#service-area" className="hover:text-slate-900">Service Area</a>
             <a href="#contact" className="hover:text-slate-900">Contact</a>
           </nav>
           <a href="#contact" className="inline-flex items-center px-4 py-2 rounded-lg bg-cyan-600 text-white text-sm font-medium hover:bg-cyan-700">Book Assessment</a>
@@ -21,7 +25,10 @@ function App() {
       <main>
         <Hero />
         <Authority />
+        <Gallery />
         <Benefits />
+        <ServiceArea />
+        <Scheduler />
         <Contact />
       </main>
 
